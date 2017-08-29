@@ -79,7 +79,11 @@ public:
     size_t size();
     size_t capacity();
 
+#if defined (__PPC64__) && defined (__LITTLE_ENDIAN__)
+    static const size_t blockSize = 64 * KB;
+#else
     static const size_t blockSize = 32 * KB;
+#endif /* __PPC64__ && __LITTLE_ENDIAN__ */
 
     bool hasWorkList();
     CopyWorkList& workList();
